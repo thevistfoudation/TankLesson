@@ -27,7 +27,7 @@ public class TankController : MonoBehaviour
             this.gameObject.transform.up = direction;
         }
 
-        bodyTank.transform.position += direction * Time.deltaTime * speed;
+        this.gameObject.transform.position += direction * Time.deltaTime * speed;
 
         Vector3 gunDirection = new Vector3(
                Input.mousePosition.x - Screen.width / 2,
