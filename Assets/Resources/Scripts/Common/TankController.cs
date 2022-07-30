@@ -32,6 +32,7 @@ public class TankController : MoveController
         if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
+            GameManager.instance.addScore();
         }
 
         if (collision.gameObject.tag == "Enemy")

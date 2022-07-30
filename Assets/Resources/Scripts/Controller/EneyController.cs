@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class EneyController : TankController
 {
-
-    public GameObject Player;
     private void Update()
     {
-        Vector3 direction = Player.transform.position;
+        var direction =  PlayerController.instance.gameObject.transform.position;
         var gunDirection = direction - transform.position;
+        gunDirection = new Vector3(gunDirection.x, gunDirection.y,0);
 
         Move(gunDirection);
         RotateGun(gunDirection);
