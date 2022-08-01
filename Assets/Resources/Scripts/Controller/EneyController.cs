@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LTAUnityBase.Base.DesignPattern;
 
 public class EneyController : TankController
 {
     private void Update()
     {
-        var direction =  PlayerController.instance.gameObject.transform.position;
+        var direction =  Player.Instance.gameObject.transform.position;
         var gunDirection = direction - transform.position;
         gunDirection = new Vector3(gunDirection.x, gunDirection.y,0);
 
@@ -18,5 +19,10 @@ public class EneyController : TankController
             Shoot();
         }
 
+        if (hp <= 0)
+        {
+            Destroy(this.gameObject);
+            Observer.Instance.Notify(TOPICNAME.ENEMYDESTROY, level);
+        }
     }
 }

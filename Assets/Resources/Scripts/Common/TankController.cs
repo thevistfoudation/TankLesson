@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class TankController : MoveController
 {
     public Transform bodyTank;
     public Transform gun;
-    public GameObject bullet;
+    public bulletController bullet;
     public Transform transhoot;
+    public float hp;
+    public float level;
     protected override void Move(Vector3 direction)
     {
         if (direction != Vector3.zero)
@@ -31,13 +32,12 @@ public class TankController : MoveController
     {
         if (collision.gameObject.tag == "Player")
         {
-            Destroy(gameObject);
-            GameManager.instance.addScore();
+            hp = bullet.CalculateHp(hp,level);
         }
 
         if (collision.gameObject.tag == "Enemy")
         {
-           // Destroy(gameObject);
+            hp = bullet.CalculateHp(hp,level);
         }
     }
 

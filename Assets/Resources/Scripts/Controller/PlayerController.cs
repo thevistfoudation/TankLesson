@@ -1,18 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using LTAUnityBase.Base.DesignPattern;
 
 public class PlayerController : TankController
 {
-    public static PlayerController instance;
 
+    public Slider slider_hp;
+    public Text levelTxt;
     private void Awake()
     {
-        if (instance == null) instance = this;
+        slider_hp.maxValue = hp;
+    }
+
+    private void Start()
+    {
+        Observer.Instance.AddObserver(TOPICNAME.ENEMYDESTROY, LevelUp);
     }
 
     void Update()
     {
+
+        slider_hp.value = hp;
+        if (hp <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         Vector3 direction = new Vector3(horizontal, vertical);
@@ -32,4 +47,16 @@ public class PlayerController : TankController
             Shoot();
         }
     }
+
+    private void LevelUp(object data)
+    {
+        float levelEnemy = (float)data;
+        level += levelEnemy;
+        levelTxt.text = "Level Player: " + level.ToString();
+    }
+}
+
+public class Player : SingletonMonoBehaviour<PlayerController>
+{
+
 }

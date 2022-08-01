@@ -6,6 +6,7 @@ public class bulletController : MoveController
 {
     private float time = 0;
     public GameObject smoke;
+    public float damage;
     // Update is called once per frame
     void Update()
     {
@@ -22,5 +23,12 @@ public class bulletController : MoveController
             Instantiate(smoke, this.gameObject.transform.position, this.gameObject.transform.rotation);
         }
         time++;
+    }
+
+    public virtual float CalculateHp(float hp, float level)
+    {
+        var hpLeft = hp - (level + damage);
+        Instantiate(smoke, this.gameObject.transform.position, this.gameObject.transform.rotation);
+        return hpLeft;
     }
 }
