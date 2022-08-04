@@ -22,6 +22,7 @@ public class EneyController : TankController
         if (hp <= 0)
         {
             Destroy(this.gameObject);
+            Debug.LogError("địch chết rồi");
             Observer.Instance.Notify(TOPICNAME.ENEMYDESTROY, level);
         }
     }

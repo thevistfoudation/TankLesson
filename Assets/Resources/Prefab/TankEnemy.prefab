@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4026693627186972498}
   m_Layer: 0
   m_Name: TankEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdc44e97f0da33b409f7f8480cdb7704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.09
+  speed: 0.5
   bodyTank: {fileID: 4026693627297935325}
   gun: {fileID: 4026693629067361850}
   bullet: {fileID: 5793102656493506015, guid: 20a5dfbc2e017724e971f85ecc1b60aa, type: 3}

@@ -31,4 +31,5 @@ public class bulletController : MoveController
         Instantiate(smoke, this.gameObject.transform.position, this.gameObject.transform.rotation);
         return hpLeft;
     }
+
 }

@@ -30,14 +30,9 @@ public class TankController : MoveController
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag != this.gameObject.tag)
         {
-            hp = bullet.CalculateHp(hp,level);
-        }
-
-        if (collision.gameObject.tag == "Enemy")
-        {
-            hp = bullet.CalculateHp(hp,level);
+            hp = bullet.CalculateHp(hp, level);
         }
     }
 

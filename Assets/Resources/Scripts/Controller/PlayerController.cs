@@ -25,7 +25,7 @@ public class PlayerController : TankController
         slider_hp.value = hp;
         if (hp <= 0)
         {
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
 
         float horizontal = Input.GetAxis("Horizontal");
@@ -53,6 +53,9 @@ public class PlayerController : TankController
         float levelEnemy = (float)data;
         level += levelEnemy;
         levelTxt.text = "Level Player: " + level.ToString();
+        bullet.damage += 10;
+        bullet.speed += 10;
+        Debug.LogError("bullet dam" + bullet.damage);
     }
 }
 
