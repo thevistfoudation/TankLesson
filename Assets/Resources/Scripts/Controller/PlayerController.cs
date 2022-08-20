@@ -55,7 +55,6 @@ public class PlayerController : TankController
         levelTxt.text = "Level Player: " + level.ToString();
         bullet.damage += 10;
         bullet.speed += 10;
-        Debug.LogError("bullet dam" + bullet.damage);
     }
 }
 

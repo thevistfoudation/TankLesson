@@ -10,20 +10,24 @@ public class EneyController : TankController
         var direction =  Player.Instance.gameObject.transform.position;
         var gunDirection = direction - transform.position;
         gunDirection = new Vector3(gunDirection.x, gunDirection.y,0);
-
+        
         Move(gunDirection);
         RotateGun(gunDirection);
-
         if (Random.Range(0, 100) % 50 == 0)
         {
             Shoot();
         }
-
         if (hp <= 0)
         {
-            Destroy(this.gameObject);
-            Debug.LogError("địch chết rồi");
-            Observer.Instance.Notify(TOPICNAME.ENEMYDESTROY, level);
+            PoolingObject.DestroyPooling<EneyController>(this);
+            //Destroy(this.gameObject);
         }
+    }
+
+
+    private void OnDisable()
+    {
+         Observer.Instance.Notify(TOPICNAME.ENEMYDESTROY, level);
+        Debug.LogError("die");
     }
 }

@@ -1,16 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using LTAUnityBase.Base.DesignPattern;
 public class bulletController : MoveController
 {
-    private float time = 0;
-    public GameObject smoke;
+    public float time = 0;
+    public DestroyController smoke;
     public float damage;
     // Update is called once per frame
     void Update()
     {
         this.transform.position += transform.up * Time.deltaTime * speed;
+        Debug.LogError(this.gameObject.tag);
         Move(this.transform.up);
         BulletEx();
     }
@@ -19,15 +20,17 @@ public class bulletController : MoveController
     {
         if (time == 30)
         {
-            Destroy(this.gameObject);
+            
+            PoolingObject.DestroyPooling<bulletController>(this);
             Instantiate(smoke, this.gameObject.transform.position, this.gameObject.transform.rotation);
+
         }
         time++;
     }
 
-    public virtual float CalculateHp(float hp, float level)
+    public virtual float CalculateHp(float hp)
     {
-        var hpLeft = hp - (level + damage);
+        var hpLeft = hp -  damage;
         Instantiate(smoke, this.gameObject.transform.position, this.gameObject.transform.rotation);
         return hpLeft;
     }

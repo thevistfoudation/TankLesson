@@ -29,7 +29,7 @@ public class WaveController : MonoBehaviour
         _enemyInWave += 1;
         if (_enemyInWave == _tankEnemy.Count)
         {
-            if (_tankEnemy.Count <= 10)
+            if (_tankEnemy.Count <= 5)
             {
                 _tankEnemy.Add(enemySample);
                 CreateWave();

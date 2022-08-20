@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using LTAUnityBase.Base.DesignPattern;
 public class GameManager : MonoBehaviour
 {
-    public EneyController tankEnemy;
     public int scorePlayer;
     public Text scoreTxt;
     private void Awake()

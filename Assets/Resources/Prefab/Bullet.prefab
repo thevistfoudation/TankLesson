@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2299037312279935041}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,9 +96,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2912b043708ae043a8a73b42c97d288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  smoke: {fileID: 934988450291278137, guid: 841077dc3b40771468be1117bab1a149, type: 3}
-  damage: 10
+  speed: 60
+  time: 0
+  smoke: {fileID: 471498936236536615, guid: 841077dc3b40771468be1117bab1a149, type: 3}
+  damage: 60
 --- !u!50 &2488626095546962978
 Rigidbody2D:
   serializedVersion: 4
