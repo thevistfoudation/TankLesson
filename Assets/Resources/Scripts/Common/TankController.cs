@@ -24,17 +24,22 @@ public class TankController : MoveController
         gun.up = direction;
     }
 
-    public void Shoot()
+    protected virtual void Shoot()
     {
         //Instantiate(bullet, transhoot.transform.position, transhoot.transform.rotation);
         CreateBullet(transhoot);
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag != this.gameObject.tag)
         {
-            hp = bullet.CalculateHp(hp);
+            var calculateHP = collision.GetComponent<bulletController>();
+            if (calculateHP is null)
+            {
+                return;
+            }
+            hp = calculateHP.CalculateHp(hp);
         }
     }
 
@@ -46,8 +51,8 @@ public class TankController : MoveController
             return Instantiate(bullet, tranShoot.position, tranShoot.rotation);
         }
         bulletclone.time = 0;
-        bulletclone.transform.position = transhoot.position;
-        bulletclone.transform.rotation = transhoot.rotation;
+        bulletclone.transform.position = tranShoot.position;
+        bulletclone.transform.rotation = tranShoot.rotation;
         bulletclone.damage += level;
         bulletclone.tag = this.tag;
         return bulletclone;

@@ -9,6 +9,11 @@ public class PlayerController : TankController
 
     public Slider slider_hp;
     public Text levelTxt;
+    public GameObject gun1;
+    public Transform tranShoot1;
+    public GameObject gun2;
+    public Transform tranShoot2;
+    private bool _itemGunUp = false;
     private void Awake()
     {
         slider_hp.maxValue = hp;
@@ -21,7 +26,8 @@ public class PlayerController : TankController
 
     void Update()
     {
-
+        gun1.SetActive(_itemGunUp);
+        gun2.SetActive(_itemGunUp);
         slider_hp.value = hp;
         if (hp <= 0)
         {
@@ -32,10 +38,7 @@ public class PlayerController : TankController
         float vertical = Input.GetAxis("Vertical");
         Vector3 direction = new Vector3(horizontal, vertical);
         Move(direction);
-        Vector3 gunDirection = new Vector3(
-               Input.mousePosition.x - Screen.width / 2,
-               Input.mousePosition.y - Screen.height / 2
-           );
+ 
         var position = Input.mousePosition;
         Vector3 gunDirectionmoba = new Vector3(
               position.x - Screen.width / 2,
@@ -44,8 +47,21 @@ public class PlayerController : TankController
         RotateGun(gunDirectionmoba);
         if (Input.GetMouseButtonDown(0))
         {
-            Shoot();
+           Shoot();
         }
+    }
+
+
+
+    protected override void Shoot()
+    {
+        if (_itemGunUp)
+        {
+           
+            CreateBullet(tranShoot1);
+            CreateBullet(tranShoot2);
+        }
+        base.Shoot();
     }
 
     private void LevelUp(object data)
@@ -56,6 +72,22 @@ public class PlayerController : TankController
         bullet.damage += 10;
         bullet.speed += 10;
     }
+
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "itemGunUp")
+        {
+            _itemGunUp = true;
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "itemHP")
+        {
+            hp += 50;
+            Destroy(collision.gameObject);
+        }
+        base.OnTriggerEnter2D(collision);
+    }
+
 }
 
 public class Player : SingletonMonoBehaviour<PlayerController>
