@@ -26,6 +26,7 @@ public class PlayerController : TankController
 
     void Update()
     {
+        levelTxt.text = "Level Player: " + level.ToString();
         gun1.SetActive(_itemGunUp);
         gun2.SetActive(_itemGunUp);
         slider_hp.value = hp;
@@ -68,7 +69,7 @@ public class PlayerController : TankController
     {
         float levelEnemy = (float)data;
         level += levelEnemy;
-        levelTxt.text = "Level Player: " + level.ToString();
+       
         bullet.damage += 10;
         bullet.speed += 10;
     }
@@ -83,6 +84,11 @@ public class PlayerController : TankController
         if (collision.gameObject.tag == "itemHP")
         {
             hp += 50;
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "itemLevel")
+        {
+            level += 100;
             Destroy(collision.gameObject);
         }
         base.OnTriggerEnter2D(collision);
