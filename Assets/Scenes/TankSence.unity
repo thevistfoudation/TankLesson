@@ -230,7 +230,7 @@ MonoBehaviour:
   speed: 5
   bodyTank: {fileID: 600369166}
   gun: {fileID: 441227106}
-  bullet: {fileID: 5793102656493506015, guid: 0ef9d28e083cccd4699608263c18b483, type: 3}
+  bullet: {fileID: 7771845051594009565, guid: 6bf9d9f58fc67bd4fb1444ddffcfda82, type: 3}
   transhoot: {fileID: 1240606694}
   hp: 100
   level: 0
@@ -1261,6 +1261,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TankEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 4026693627186972501, guid: 277acb7af9fc54946ba102ca8fe10c0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 277acb7af9fc54946ba102ca8fe10c0d, type: 3}
 --- !u!1 &863513268
@@ -2255,7 +2260,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1448417014}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 40dbce1377debf049bd1c36d31288d06, type: 3}
   m_Name: 

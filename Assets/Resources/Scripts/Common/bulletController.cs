@@ -28,7 +28,7 @@ public class bulletController : MoveController
         time++;
     }
 
-    public virtual float CalculateHp(float hp)
+    public float CalculateHp(float hp)
     {
         var hpLeft = hp -  damage;
         Instantiate(smoke, this.gameObject.transform.position, this.gameObject.transform.rotation);

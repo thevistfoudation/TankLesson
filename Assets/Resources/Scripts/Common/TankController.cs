@@ -34,6 +34,13 @@ public class TankController : MoveController
     {
         if (collision.gameObject.tag != this.gameObject.tag)
         {
+            var calculateHPIce = collision.GetComponent<BulletControllerIce>();
+            if (calculateHPIce is null)
+            {
+                return;
+            }
+            hp = calculateHPIce.CalculateHp(hp);
+
             var calculateHP = collision.GetComponent<bulletController>();
             if (calculateHP is null)
             {
