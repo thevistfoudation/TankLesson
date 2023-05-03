@@ -10,14 +10,18 @@ public class GameManager : MonoBehaviour
     public Text scoreTxt;
     private void Awake()
     {
-        Observer.Instance.AddObserver(TOPICNAME.ENEMYDESTROY, addScore);
+
+        this.RegisterListener(EventID.enemyDestroy, (sender, param) =>
+        {
+            addScore();
+        });
     }
     private void Update()
     {
         scoreTxt.text = "score : " + scorePlayer.ToString();
     }
 
-    public void addScore(object data)
+    public void addScore()
     {
         scorePlayer += 10;
     }

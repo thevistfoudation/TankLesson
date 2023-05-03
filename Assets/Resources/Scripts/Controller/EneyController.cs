@@ -23,7 +23,8 @@ public class EneyController : TankController
         {
             Destroy(this.gameObject);
             Debug.LogError("địch chết rồi");
-            Observer.Instance.Notify(TOPICNAME.ENEMYDESTROY, level);
+            //Observer.Instance.Notify(TOPICNAME.ENEMYDESTROY, level);
+            this.PostEvent(EventID.enemyDestroy, level);
         }
     }
 }

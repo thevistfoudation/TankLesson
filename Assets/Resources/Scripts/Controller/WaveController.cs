@@ -10,7 +10,11 @@ public class WaveController : MonoBehaviour
     private int _enemyInWave = 0;
     private void Start()
     {
-        Observer.Instance.AddObserver(TOPICNAME.ENEMYDESTROY, CalculateWave);
+        this.RegisterListener(EventID.enemyDestroy, (sender, param) =>
+        {
+            CalculateWave();
+        });
+
         _tankEnemy.Add(enemySample);
         CreateWave();
     }
@@ -24,7 +28,7 @@ public class WaveController : MonoBehaviour
         }
     }
 
-    private void CalculateWave(object data)
+    private void CalculateWave()
     {
         _enemyInWave += 1;
         if (_enemyInWave == _tankEnemy.Count)

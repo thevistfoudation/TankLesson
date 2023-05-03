@@ -16,7 +16,11 @@ public class PlayerController : TankController
 
     private void Start()
     {
-        Observer.Instance.AddObserver(TOPICNAME.ENEMYDESTROY, LevelUp);
+        //Observer.Instance.AddObserver(TOPICNAME.ENEMYDESTROY, LevelUp);
+        this.RegisterListener(EventID.enemyDestroy, (sender, param) =>
+        {
+            LevelUp((float)param);
+        });
     }
 
     void Update()
@@ -48,9 +52,9 @@ public class PlayerController : TankController
         }
     }
 
-    private void LevelUp(object data)
+    private void LevelUp(float levelEnemy)
     {
-        float levelEnemy = (float)data;
+        
         level += levelEnemy;
         levelTxt.text = "Level Player: " + level.ToString();
         bullet.damage += 10;
